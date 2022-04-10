@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/igormos1/react-2_feedback/static/css/main.871cf5ae.css",
-    "main.js": "/igormos1/react-2_feedback/static/js/main.9f67ff68.js",
-    "index.html": "/igormos1/react-2_feedback/index.html",
-    "main.871cf5ae.css.map": "/igormos1/react-2_feedback/static/css/main.871cf5ae.css.map",
-    "main.9f67ff68.js.map": "/igormos1/react-2_feedback/static/js/main.9f67ff68.js.map"
+    "main.css": "/react-2_feedback/static/css/main.871cf5ae.css",
+    "main.js": "/react-2_feedback/static/js/main.9f67ff68.js",
+    "index.html": "/react-2_feedback/index.html",
+    "main.871cf5ae.css.map": "/react-2_feedback/static/css/main.871cf5ae.css.map",
+    "main.9f67ff68.js.map": "/react-2_feedback/static/js/main.9f67ff68.js.map"
   },
   "entrypoints": [
     "static/css/main.871cf5ae.css",
