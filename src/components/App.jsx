@@ -3,7 +3,7 @@ import { Component } from 'react';
 import Statistics from './Statistics';
 import Section from './Section';
 import Notification from './Notification/Notification';
-import Feedback from './Feedback/Feedback'
+import FeedbackOptions from './Feedback/Feedback'
 
 class App extends Component {
   state = {
@@ -14,44 +14,31 @@ class App extends Component {
 
 
 
-   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
-   };
-  
-  onLeaveFeedback = ({ target }) => {
-    const { name } = target;
-    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
-  };
+     setEstimate = (estimate) => {
+      this.setState(prevState => ({[estimate]: prevState[estimate]+1,}));        
+  } 
 
-  countPositiveFeedbackPercentage() {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
-  };
-
-  
-   
   render() {
-    const { good, neutral, bad } = this.state;
-
-    return (
+    const countFeedback = () => { return Object.values(this.state).reduce(
+        (total, estimate) => total+estimate, 0
+      )};
       
-        <Section title="Please leave feedback">
-        <Feedback onLeaveFeedback={this.onLeaveFeedback} />
-        {this.countTotalFeedback() ? (
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
-        ) : (
-          <Notification message={'No feedback given'} />
-        )}
-      </Section>
+      return(
+          <>
+            <Section text='Please leave feed back'>
+              <FeedbackOptions 
+                    feedbacks = {this.state} 
+                    onLeaveFeedback={this.setEstimate}/>
+            </Section>
+            { countFeedback()?
+            <Section text='Statistics'>              
+              <Statistics feedbacks = {this.state}  />
+            </Section>:
+            <Notification text='There is no feedback'/>
+            } 
+            </>
+      )
       
-    );
   }
 }
-
 export default App;

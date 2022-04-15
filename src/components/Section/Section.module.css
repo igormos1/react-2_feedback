@@ -1,10 +1,6 @@
-.sectionTitle {
-  font-weight: bold;
-  font-size: 25px;
-}
-
-.sec{
-    width: 900px;
-  margin: 0 auto;
+.Section {
+  width: 400px;
+  margin: 30px auto;
   text-align: center;
+  font-weight: 600;
 }

@@ -1,27 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Statistics.module.css';
+import propTypes from 'prop-types';
+//import styles from './Statistics.module.css';
 
-const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
-  return (
-    <>
-      <p className={styles.statisticsTitle}>Statistics</p>
-      <p>Good:{good}</p>
-      <p>Neutral:{neutral}</p>
-      <p>Bad:{bad}</p>
-      <p>Total:{total}</p>
-       <p>Positive feedback:{positivePercentage}%</p>
-    </>
-  );
-};
+const Statistics = ({feedbacks}) => {    
+        const estimates = Object.values(feedbacks);  
+        const countTotalFeedback = () => { return estimates.reduce(
+          (total, estimate) => total+estimate, 0
+        )};
+        const countPositiveFeedbackPercentage =Math.round(estimates[0] / countTotalFeedback() * 100);
+      
+        return(
+            <div>
+                
+                {Object.keys(feedbacks).map((estimate) => {
+                  return(
+                      <p 
+                      key = {estimate}>{estimate}:{feedbacks[estimate]}</p>
+                  )
+              })}
+              <p>Total: {countTotalFeedback()}</p>
+              <p>{estimates[0]?`Positive feedback: ${countPositiveFeedbackPercentage}%`:'No positive feedback'}</p>
+            </div>
+        )
+    
+}
 
 Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage:PropTypes.number.isRequired,
-  
-};
+  feedbacks: propTypes.objectOf(propTypes.number).isRequired
+}
 
 export default Statistics;
